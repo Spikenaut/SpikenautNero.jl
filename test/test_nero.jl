@@ -75,4 +75,28 @@ using SpikenautNero
         @test isapprox(sum(nero.routing_weights), 1.0f0, atol=1e-4)
     end
 
+    @testset "prev_relevance field exists and is populated (regression LIM-5)" begin
+        nero = NeroOrchestrator()
+        # Field must exist and start zeroed
+        @test hasproperty(nero, :prev_relevance)
+        @test length(nero.prev_relevance) == 4
+        @test all(iszero, nero.prev_relevance)
+
+        lobes = [LobeState(1.0f0, ones(Float32, 16)),
+                 LobeState(0.0f0, zeros(Float32, 16)),
+                 LobeState(0.0f0, zeros(Float32, 16)),
+                 LobeState(0.0f0, zeros(Float32, 16))]
+        update_relevance!(nero, lobes)
+
+        # After first tick prev_relevance should hold the raw scores, not zeros
+        @test !all(iszero, nero.prev_relevance)
+        @test length(nero.prev_relevance) == 4
+
+        # Second tick: prev_relevance is updated in-place as a scratch buffer,
+        # so its contents will differ from the previous tick's raw values
+        prev_first = copy(nero.prev_relevance)
+        update_relevance!(nero, lobes)
+        @test nero.prev_relevance != prev_first
+    end
+
 end

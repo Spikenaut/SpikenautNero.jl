@@ -96,6 +96,15 @@ before being open-sourced as a standalone Julia package for LLM-SNN fusion.
 | [SpikenautDistill.jl](https://github.com/rmems/SpikenautDistill.jl) | Training + FPGA export |
 | [spikenaut-backend](https://github.com/rmems/spikenaut-backend) | Rust NERO packet consumer |
 
+## Branches and Development Workflow
+
+| Branch | Role | Merge Target |
+|--------|------|--------------|
+| `main` | Production releases. CI-tested, API-stable. | — |
+| `llm-routing-refactor` | Active development branch for LLM-SNN routing experiments. Rebased against `main` before each merge. | `main` via PR |
+
+`llm-routing-refactor` is the integration point for hardware-software co-design work (PCIe telemetry, thermal-aware sparsity, FPGA packet consumers). It is kept close to `main` to minimise merge debt.
+
 ## License
 
 GPL-3.0-or-later
