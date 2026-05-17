@@ -2,7 +2,7 @@
   <img src="docs/logo.png" width="220" alt="Spikenaut">
 </p>
 
-<h1 align="center">SpikenautNero.jl</h1>
+<h1 align="center">NeuroPulse.jl</h1>
 <p align="center">Neuromorphic Attention Router and Sparsity Enforcer for LLM-SNN fusion</p>
 
 <p align="center">
@@ -32,13 +32,13 @@ Enables hardware-software co-design with thermal-aware sparsity control.
 
 ```julia
 using Pkg
-Pkg.add("SpikenautNero")
+Pkg.add("NeuroPulse")
 ```
 
 ## Quick Start
 
 ```julia
-using SpikenautNero
+using NeuroPulse
 
 # 4-lobe neuromorphic router (Attention, FFN, Memory, Output)
 orch = NeroOrchestrator(

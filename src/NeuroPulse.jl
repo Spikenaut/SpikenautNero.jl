@@ -1,5 +1,5 @@
 """
-    SpikenautNero
+    NeuroPulse
 
 NERO: Neuromorphic Evaluation of Relevance and Orchestration.
 
@@ -17,7 +17,7 @@ Extracted from Eagle-Lander, the author's own private neuromorphic GPU superviso
 repository (closed-source). NERO orchestrated a 4-lobe 65,536-neuron LSM ensemble
 in production before being open-sourced as a standalone Julia package.
 """
-module SpikenautNero
+module NeuroPulse
 
 export LobeState, NeroOrchestrator, update_relevance!, nero_diagnostics, adapt_leak!
 
