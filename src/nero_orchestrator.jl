@@ -63,6 +63,7 @@ Fields:
   readout_ema      — per-lobe EMA of the readout (n_lobes × n_out)
   spike_density    — current spike density per lobe
   prev_routing_weights — previous tick routing weights (for momentum)
+  prev_relevance   — raw relevance scores from the previous tick (scratch buffer this tick)
   surprise         — manifold surprise score per lobe
   scratch          — reusable scratch buffer (n_out elements)
   tick_count       — global tick counter
@@ -76,6 +77,7 @@ mutable struct NeroOrchestrator
     readout_ema::Matrix{Float32}
     spike_density::Vector{Float32}
     prev_routing_weights::Vector{Float32}
+    prev_relevance::Vector{Float32}
     surprise::Vector{Float32}
     scratch::Vector{Float32}
     tick_count::Int64
@@ -105,6 +107,7 @@ function NeroOrchestrator(;
         zeros(Float32, n_lobes, n_out),
         zeros(Float32, n_lobes),
         fill(1.0f0 / n_lobes, n_lobes),
+        zeros(Float32, n_lobes),
         zeros(Float32, n_lobes),
         zeros(Float32, n_out),
         Int64(0)
@@ -194,6 +197,7 @@ function update_relevance!(nero::NeroOrchestrator, lobes::Vector{LobeState})
     end
     inhibited ./= (sum(inhibited) + NERO_EPSILON)
 
+    copyto!(nero.prev_relevance, raw)
     copyto!(nero.prev_routing_weights, nero.routing_weights)
     return nothing
 end
