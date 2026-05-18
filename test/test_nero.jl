@@ -1,7 +1,7 @@
 using Test
-using SpikenautNero
+using NeuroPulse
 
-@testset "SpikenautNero" begin
+@testset "NeuroPulse" begin
 
     @testset "NeroOrchestrator construction" begin
         nero = NeroOrchestrator()
@@ -27,7 +27,7 @@ using SpikenautNero
             update_relevance!(nero, lobes)
         end
         for r in nero.routing_weights
-            @test r >= SpikenautNero.NERO_MIN_SCORE
+            @test r >= NeuroPulse.NERO_MIN_SCORE
         end
     end
 
