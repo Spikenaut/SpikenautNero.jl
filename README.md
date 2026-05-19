@@ -150,8 +150,7 @@ This repository was renamed from `NeuroPulse.jl` (and earlier `SpikenautAttentio
 
 Migration steps for downstream users:
 
-- replace `Pkg.add("SpikenautAttention")` with `Pkg.add("TemporalFocus")`
-- replace `using SpikenautAttention` with `using TemporalFocus`
+- replace `Pkg.add("NeuroPulse")` (or `SpikenautAttention`) with `Pkg.add("TemporalFocus")`\n- replace `using NeuroPulse` (or `using SpikenautAttention`) with `using TemporalFocus`
 - update any package metadata or examples that still reference the old name
 
 The NERO algorithm name remains in the current public API via `NeroOrchestrator` and
