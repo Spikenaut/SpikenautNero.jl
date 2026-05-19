@@ -146,7 +146,7 @@ Additional docs live in `docs/`:
 
 ## Migration note
 
-This repository was renamed from `SpikenautAttention.jl` (earlier internal snapshots also used `SpikenautNero.jl`) to `TemporalFocus.jl`.
+This repository was renamed from `NeuroPulse.jl` (and earlier `SpikenautAttention.jl` or `SpikenautNero.jl`) to `TemporalFocus.jl`.
 
 Migration steps for downstream users:
 
